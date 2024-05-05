@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf0hjbm8xa6oy"]
+
+[ext_resource type="Script" path="res://scripts/tile.gd" id="1_g23tf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6nat6"]
+albedo_color = Color(0.654902, 0.439216, 0.309804, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jq6oj"]
+material = SubResource("StandardMaterial3D_6nat6")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_edui4"]
+
+[node name="tile" type="Node3D"]
+script = ExtResource("1_g23tf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_jq6oj")
+skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_edui4")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]

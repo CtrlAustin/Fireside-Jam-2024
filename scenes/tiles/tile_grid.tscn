@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://5nsgna2n40n6"]
+
+[ext_resource type="Script" path="res://scripts/tile_grid.gd" id="1_h4vx5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_2vn1i"]
+
+[node name="tile_grid" type="Node3D"]
+script = ExtResource("1_h4vx5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+visible = false
+mesh = SubResource("BoxMesh_2vn1i")
+
+[node name="center_point" type="Node3D" parent="."]
