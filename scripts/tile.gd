@@ -5,18 +5,13 @@ extends Node3D
 var rng = RandomNumberGenerator.new()
 var hovertrans = Vector3(0,.5,0)
 var hovertransdown = Vector3(0,-.5,0)
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#meshobj.albedo_color = Color(rng.randf_range(0, 1), rng.randf_range(0, 1), rng.randf_range(0, 1))
-	#meshobj.mesh.surface_get_material(0) = Color(rng.randf_range(0, 1), rng.randf_range(0, 1), rng.randf_range(0, 1))
-	#print(meshobj)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_area_3d_mouse_entered():
 	mesh3d.position = lerp(mesh3d.position, mesh3d.position+hovertrans,1)
@@ -24,3 +19,8 @@ func _on_area_3d_mouse_entered():
 
 func _on_area_3d_mouse_exited():
 	mesh3d.position = lerp(mesh3d.position, mesh3d.position+hovertransdown,1)
+
+
+func _on_area_3d_input_event(camera, event, position, normal, shape_idx):
+		pass
+

@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjfxslr1tg51k"]
+[gd_scene load_steps=7 format=3 uid="uid://bjfxslr1tg51k"]
 
 [ext_resource type="PackedScene" uid="uid://5nsgna2n40n6" path="res://scenes/tiles/tile_grid.tscn" id="1_7fjaf"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_xpcie"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njqnt"]
+shading_mode = 0
+albedo_color = Color(1, 0.346577, 0.280009, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_e804p"]
+material = SubResource("StandardMaterial3D_njqnt")
 
 [sub_resource type="Environment" id="Environment_vd4xb"]
 background_mode = 1
@@ -13,20 +20,28 @@ background_color = Color(0.611971, 0.795702, 0.945746, 1)
 script = ExtResource("1_xpcie")
 
 [node name="camera_rig" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 3.1928, 14.9675)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 5.84799, 7.82318)
 
 [node name="Camera3D" type="Camera3D" parent="camera_rig"]
-transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 16.9651, 15.8072)
+transform = Transform3D(1, 0, 0, 0, 0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 3.38945, 8.13459)
 projection = 1
 current = true
-size = 6.99481
+fov = 118.125
+size = 5.86616
+
+[node name="RayCast3D" type="RayCast3D" parent="camera_rig/Camera3D"]
+target_position = Vector3(0, 0, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="camera_rig/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92511, -10.5466)
+mesh = SubResource("SphereMesh_e804p")
 
 [node name="tile_grid" parent="." instance=ExtResource("1_7fjaf")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 30.1311)
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_vd4xb")
 camera_attributes = SubResource("CameraAttributesPractical_rdfci")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.998855, 0.0478387, 0, -0.0478387, 0.998855, 0, 7.30007, 1.59317)
+transform = Transform3D(1, 0, 0, 0, 0.998855, 0.0478387, 0, -0.0478387, 0.998855, 0, 21.803, 1.59317)
