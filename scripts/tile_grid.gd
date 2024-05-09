@@ -44,10 +44,17 @@ func _ready():
 				instance.position.x = indexZ
 				instance.position.z = indexX
 				instance.position.y = position.y
+				instance.unlocked = true
 				add_child(instance)
 			else:
 				teststring += "0"
-				print("0")
+				var tile_scene = preload("res://scenes/tiles/tile.tscn")
+				var instance = tile_scene.instantiate()
+				instance.position.x = indexZ
+				instance.position.z = indexX
+				instance.position.y = position.y
+				instance.unlocked = false
+				add_child(instance)
 			indexX += 1
 		indexX = 0
 		indexZ += 1

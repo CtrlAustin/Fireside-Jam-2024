@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjfxslr1tg51k"]
+[gd_scene load_steps=8 format=3 uid="uid://bjfxslr1tg51k"]
 
 [ext_resource type="PackedScene" uid="uid://5nsgna2n40n6" path="res://scenes/tiles/tile_grid.tscn" id="1_7fjaf"]
 [ext_resource type="Script" path="res://scripts/main_scene.gd" id="1_xpcie"]
+[ext_resource type="Texture2D" uid="uid://b5gvwby4el08w" path="res://icon.svg" id="2_3jqpy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njqnt"]
 shading_mode = 0
@@ -30,11 +31,61 @@ fov = 118.125
 size = 5.86616
 
 [node name="RayCast3D" type="RayCast3D" parent="camera_rig/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 0, 0, 0)
 target_position = Vector3(0, 0, -1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="camera_rig/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.92511, -10.5466)
 mesh = SubResource("SphereMesh_e804p")
+
+[node name="Control" type="Control" parent="camera_rig/Camera3D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="camera_rig/Camera3D/Control"]
+layout_mode = 0
+offset_top = 185.0
+offset_right = 250.0
+offset_bottom = 565.0
+
+[node name="ItemList" type="ItemList" parent="camera_rig/Camera3D/Control"]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 185.0
+offset_right = 1150.0
+offset_bottom = 565.0
+item_count = 4
+max_columns = 2
+same_column_width = true
+fixed_column_width = 113
+icon_mode = 0
+fixed_icon_size = Vector2i(85, 85)
+item_0/text = "Plant 1"
+item_0/icon = ExtResource("2_3jqpy")
+item_1/text = "Plant 2"
+item_1/icon = ExtResource("2_3jqpy")
+item_2/text = "Plant 3"
+item_2/icon = ExtResource("2_3jqpy")
+item_2/disabled = true
+item_3/text = "Plant 4"
+item_3/icon = ExtResource("2_3jqpy")
+item_3/disabled = true
+
+[node name="Panel2" type="ItemList" parent="camera_rig/Camera3D/Control"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 119.0
+allow_search = false
+item_count = 2
+max_columns = 176
+icon_mode = 0
+fixed_icon_size = Vector2i(95, 85)
+item_0/text = ""
+item_0/icon = ExtResource("2_3jqpy")
+item_1/text = ""
+item_1/icon = ExtResource("2_3jqpy")
 
 [node name="tile_grid" parent="." instance=ExtResource("1_7fjaf")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
@@ -45,3 +96,6 @@ camera_attributes = SubResource("CameraAttributesPractical_rdfci")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.998855, 0.0478387, 0, -0.0478387, 0.998855, 0, 21.803, 1.59317)
+
+[connection signal="item_selected" from="camera_rig/Camera3D/Control/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="item_selected" from="camera_rig/Camera3D/Control/Panel2" to="." method="_on_panel_2_item_selected"]
